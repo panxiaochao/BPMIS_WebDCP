@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="BPMIS_WebDCP"
+  id="myeclipse.1386657866015"
+  context-root="/BPMIS_WebDCP"
+  j2ee-spec="5.0"
+  archive="BPMIS_WebDCP.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
