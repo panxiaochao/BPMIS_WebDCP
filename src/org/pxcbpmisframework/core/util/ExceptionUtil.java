@@ -4,17 +4,17 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * Exception¹¤¾ßÀà
+ * Exceptionå·¥å…·ç±»
  * 
  */
 public class ExceptionUtil {
 
 	/**
-	 * ·µ»Ø´íÎóĞÅÏ¢×Ö·û´®
+	 * è¿”å›é”™è¯¯ä¿¡æ¯å­—ç¬¦ä¸²
 	 * 
 	 * @param ex
 	 *            Exception
-	 * @return ´íÎóĞÅÏ¢×Ö·û´®
+	 * @return é”™è¯¯ä¿¡æ¯å­—ç¬¦ä¸²
 	 */
 	public static String getExceptionMessage(Exception ex) {
 		StringWriter sw = new StringWriter();
