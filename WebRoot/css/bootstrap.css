@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v2.3.0
+ * Bootstrap v2.3.2
  *
  * Copyright 2012 Twitter, Inc
  * Licensed under the Apache License v2.0
@@ -97,8 +97,9 @@ sup {
 sub {
   bottom: -0.25em;
 }
+
 img {
-/*  width: auto\9;*/
+  width: auto\9;
   height: auto;
   max-width: 100%;
   vertical-align: middle;
@@ -1092,6 +1093,7 @@ input[type="color"],
   display: inline-block;
   height: 20px;
   padding: 4px 6px;
+
   margin-bottom: 10px;
   font-size: 14px;
   line-height: 20px;
@@ -1636,6 +1638,7 @@ select:focus:invalid:focus {
 
 .form-actions:before,
 .form-actions:after {
+
   display: table;
   line-height: 0;
   content: "";
@@ -3008,6 +3011,15 @@ table th[class*="span"],
   display: block;
 }
 
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 990;
+}
+
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;
@@ -4093,8 +4105,8 @@ input[type="submit"].btn.btn-mini {
 .nav-pills > .active > a,
 .nav-pills > .active > a:hover,
 .nav-pills > .active > a:focus {
-  color: #ffffff;
-  background-color: #0088cc;
+  color: #666;
+  background-color: #eeeeee;
 }
 
 .nav-stacked > li {
@@ -5535,6 +5547,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .row-fluid .thumbnails {
+
   margin-left: 0;
 }
 

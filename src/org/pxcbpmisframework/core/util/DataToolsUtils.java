@@ -17,11 +17,12 @@ public class DataToolsUtils {
 	public DataToolsUtils() {
 	}
 
-	public static SimpleDateFormat getSimpleformatpatten() {
+	private static SimpleDateFormat getSimpleformatpatten() {
 		return simpleformatpatten;
 	}
 
-	public static void setSimpleformatpatten(SimpleDateFormat simpleformatpatten) {
+	private static void setSimpleformatpatten(
+			SimpleDateFormat simpleformatpatten) {
 		DataToolsUtils.simpleformatpatten = simpleformatpatten;
 	}
 
@@ -155,15 +156,18 @@ public class DataToolsUtils {
 	/**
 	 * @Description:long转格式化时间
 	 */
-	public static String parseTimelong(String src) {
-		return getSimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(
-				new Date(Long.parseLong(src)));
+	public static String longParseStr(String src) {
+		return longParseStr(Long.parseLong(src));
+	}
+
+	public static String longParseStr(long src) {
+		return getSimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(src));
 	}
 
 	/**
 	 * @Description:long转格式化时间
 	 */
-	public static String parseTimelong(String src, String pattern) {
+	public static String longParseStr(String src, String pattern) {
 		return getSimpleDateFormat(pattern).format(
 				new Date(Long.parseLong(src)));
 	}
@@ -171,14 +175,14 @@ public class DataToolsUtils {
 	/**
 	 * @Description:long转格式化时间
 	 */
-	public static String parseTimelong(String src, int length) {
+	public static String longParseStr(String src, int length) {
 		String pattern = "yyyy-MM-dd HH:mm:ss";
 		return getSimpleDateFormat(pattern).format(
 				new Date(Long.parseLong(src))).substring(0, length);
 	}
 
 	public static void main(String[] args) {
-		System.out.println(getYear()+" "+getMonth()+" "+getDay());
+		System.out.println(getYear() + " " + getMonth() + " " + getDay());
 
 	}
 }

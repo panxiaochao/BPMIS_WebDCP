@@ -14,7 +14,7 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">false</property>
 		<property name="jdbc.fetch_size">50</property>        
-        <property name="jdbc.batch_size">23</property>
+        <property name="jdbc.batch_size">20</property>
 		<property name="jdbc.use_scrollable_resultset">false</property>
 		
 		

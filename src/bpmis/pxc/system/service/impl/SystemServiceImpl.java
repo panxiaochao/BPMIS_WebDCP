@@ -83,6 +83,11 @@ public class SystemServiceImpl implements SystemService {
 		systemDao.saveAll(entityAll);
 	}
 
+	public <T> void update(T entity) {
+		// TODO Auto-generated method stub
+		systemDao.update(entity);
+	}
+
 	public <T> void saveOrUpdata(T entity) {
 		// TODO Auto-generated method stub
 		systemDao.saveOrUpdata(entity);

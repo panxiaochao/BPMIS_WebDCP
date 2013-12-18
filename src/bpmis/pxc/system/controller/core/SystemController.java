@@ -8,6 +8,7 @@ import org.pxcbpmisframework.core.json.AjaxJson;
 import org.pxcbpmisframework.core.util.DataToolsUtils;
 import org.pxcbpmisframework.core.util.IpUtils;
 import org.pxcbpmisframework.core.util.SystemPath;
+import org.pxcbpmisframework.core.xml.DomjXmlIT;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,7 @@ public class SystemController {
 	@RequestMapping(value = "/test.do")
 	public String test(HttpServletRequest request) {
 		System.out.println("----------->going le");
+		systemService.saveAll(DomjXmlIT.parserITXml("2013-12-18.xml"));
 		return "hello";
 	}
 

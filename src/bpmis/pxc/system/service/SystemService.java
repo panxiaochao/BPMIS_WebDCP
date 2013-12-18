@@ -20,6 +20,8 @@ public interface SystemService {
 
 	public <T> void saveAll(List<T> entityAll);
 
+	public <T> void update(T entity);
+
 	public <T> void delete(T entity);
 
 	public <T> void deleteEntityById(Class<T> entityName, String id);

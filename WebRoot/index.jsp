@@ -124,20 +124,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!-- footer starts
 ================================================== -->
-<footer id="footer">
+<div id="footer">
   <div class="container">
-    <div class="row comingsoon-footer"> 
+    <div class="row"> 
+      
       <!--first column starts-->
-      <div class="span12"> <span class="pull-left">Copyright © 2013-2014 BPMIS_WebDCP - Powered By <a href="#">Panxiaochao</a> V1.0 All Rights Reserved.</span>
+      <div class="span9"> 
+        
+        <!--row for nested columns starts-->
+        <div class="row"> 
+          
+          <!--first nested column starts-->
+          <div class="span3">
+            <h5>关于WebDCP</h5>
+            <p>WebDCP是一个依赖于BPMIS主程序的一个附属程序，主要是一款Web平台的个人云文档系统，这次最大的更新是采用了最新的Spring MVC架构，而且在其设计的方面，加入了混合编程方式，更加的适应扩展、适应环境！</p>
+          </div>
+          
+          <!--second nested column starts-->
+          <div class="span3">
+            <h5>社交应用</h5>
+            <div id="twitter"></div>
+            <a href="#" class="tweet-birdy">Follow us</a></div>
+          
+          <!--third nested column starts-->
+          <div class="span3">
+            <h5>相关链接</h5>
+            <ul class="list-arrow">
+              <li><a href="#">BPMIS_CMS</a></li>
+              <li><a href="#">BPMIS_WebDCP</a></li>
+            </ul>
+          </div>
+        </div>
+        <!--row for nested columns ends--> 
+        
+        <!--divider here-->
+        <div class="divider-dark"></div>
+        <p class="pull-left">Copyright © 2013-2014 BPMIS_WebDCP - Powered By <a href="#">Panxiaochao</a> V1.0 All Rights Reserved.</p>
         <ul class="inline-right">
           <li><a href="#">技术支持</a></li>
           <li><a href="#">隐私政策</a></li>
           <li><a href="#">版本说明</a></li>
         </ul>
       </div>
+      <!--first column ends--> 
+      
+      <!--second column starts-->
+      <div class="span3 pos-rel"> 
+        <!--box-dark starts-->
+        <div class="box-dark">
+          <h4>Address：</h4>
+          <address>
+          WebDCP Inc.<br/>
+          中国浙江省杭州市<br/>
+          西湖区天目山路财神殿81号3602<br/>
+          POST：310000
+          </address>
+        </div>
+        <!--box-dark ends--> 
+        
+      </div>
+      <!--second column ends--> 
+      
     </div>
   </div>
-</footer>
+</div>
+
 <!-- footer ends
 ================================================== --> 
 

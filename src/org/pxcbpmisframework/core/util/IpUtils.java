@@ -16,7 +16,7 @@ public class IpUtils {
 	 * 获取本机IP
 	 */
 	public static String getLocalHostIp(HttpServletRequest request) {
-		return request.getServerName();
+		return request.getRemoteAddr();
 	}
 
 	/**
