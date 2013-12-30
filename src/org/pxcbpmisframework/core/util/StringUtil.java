@@ -1195,15 +1195,7 @@ public class StringUtil {
 		return return_value;
 	}
 
-	/**
-	 * *************************************************************************
-	 * 
-	 * @author 李锋 2007.4.18
-	 * @param 传入
-	 *            &#31119;test&#29031;&#27004;&#65288;&#21271;&#22823;&#38376;&# 24635 ;&#24215;&#65289;&#31119;
-	 * @return 经过解码的内容
-	 ************************************************************************* 
-	 */
+	
 	public static String getGBK(String str) {
 
 		return transfer(str);
@@ -1225,14 +1217,7 @@ public class StringUtil {
 		return "" + ch;
 	}
 
-	/**
-	 * yahoo首页中切割字符串.
-	 * 
-	 * @author yxg
-	 * @date 2007-09-17
-	 * @param str
-	 * @return
-	 */
+	
 	public static String subYhooString(String subject, int size) {
 		subject = subject.substring(1, size);
 		return subject;
@@ -1246,8 +1231,6 @@ public class StringUtil {
 	/**
 	 * 泛型方法(通用)，把list转换成以“,”相隔的字符串 调用时注意类型初始化（申明类型） 如：List<Integer> intList = new ArrayList<Integer>(); 调用方法：StringUtil.listTtoString(intList); 效率：list中4条信息，1000000次调用时间为850ms左右
 	 * 
-	 * @author fengliang
-	 * @serialData 2008-01-09
 	 * @param <T>
 	 *            泛型
 	 * @param list
@@ -1273,8 +1256,6 @@ public class StringUtil {
 	/**
 	 * 把整形数组转换成以“,”相隔的字符串
 	 * 
-	 * @author fengliang
-	 * @serialData 2008-01-08
 	 * @param a
 	 *            数组a
 	 * @return 以“,”相隔的字符串

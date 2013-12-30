@@ -14,6 +14,7 @@ public interface JdbcTemplateDao {
 	public int queryForInt(String sql, Object[] args);
 	public String queryForString(String sql);	
 	public String queryForString(String sql, Object[] args);
+	public <T> List<T> queryForList(String sql);
 	public <T> List<T> queryForList(String sql, Class<T> entityClass);
 	public <T> List<T> queryForList(String sql, Object[] args, Class<T> entityClass);
 

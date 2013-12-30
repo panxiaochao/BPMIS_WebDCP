@@ -13,15 +13,14 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * spring mvc
+ * MyExceptionHandler
  * 
  */
-@Controller
 public class MyExceptionHandler implements HandlerExceptionResolver {
 
 	private static final Logger logger = Logger
 			.getLogger(MyExceptionHandler.class);
-	
+
 	public ModelAndView resolveException(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex) {
 		System.out.println("----------------------------->");

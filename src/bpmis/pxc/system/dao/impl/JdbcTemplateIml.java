@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -35,7 +36,12 @@ public class JdbcTemplateIml implements JdbcTemplateDao {
 
 	public int queryForInt(String sql, Object[] args) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.queryForObject(sql, args, Integer.class);
+		try {
+			return jdbcTemplate.queryForObject(sql, args, Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			// TODO: handle exception
+			return -1;
+		}
 	}
 
 	public String queryForString(String sql) {
@@ -45,7 +51,23 @@ public class JdbcTemplateIml implements JdbcTemplateDao {
 
 	public String queryForString(String sql, Object[] args) {
 		// TODO Auto-generated method stub
-		return jdbcTemplate.queryForObject(sql, args, String.class);
+		try {
+			return jdbcTemplate.queryForObject(sql, args, String.class);
+		} catch (EmptyResultDataAccessException e) {
+			// TODO: handle exception
+			return "-1";
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> List<T> queryForList(String sql) {
+		// TODO Auto-generated method stub
+		try {
+			return (List<T>) jdbcTemplate.queryForList(sql);
+		} catch (EmptyResultDataAccessException e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 
 	public <T> List<T> queryForList(String sql, Class<T> entityClass) {
@@ -57,8 +79,14 @@ public class JdbcTemplateIml implements JdbcTemplateDao {
 	public <T> List<T> queryForList(String sql, Object[] args,
 			Class<T> entityClass) {
 		// TODO Auto-generated method stub
-		return (List<T>) jdbcTemplate.queryForList(sql, args,
-				new BeanPropertyRowMapper<T>(entityClass));
+		try {
+			return (List<T>) jdbcTemplate.queryForList(sql, args,
+					new BeanPropertyRowMapper<T>(entityClass));
+		} catch (EmptyResultDataAccessException e) {
+			// TODO: handle exception
+			return null;
+		}
+
 	}
 
 }

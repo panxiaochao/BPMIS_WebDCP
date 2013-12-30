@@ -41,7 +41,8 @@ function _ajaxCall(url, params, callback, datatype, isAsync) {
 		url: url,
 		data: params ? params : {},
 		dataType: datatype,
-		async: isAsync ? false : true,		
+		async: isAsync ? false : true,	
+		cache: false,	
 		beforeSend: function(XMLHttpRequest){
 
 		},

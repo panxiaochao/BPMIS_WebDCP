@@ -10,8 +10,6 @@ import org.pxcbpmisframework.core.exception.BusinessException;
 
 public class DataToolsUtils {
 	private static final Calendar calendar = Calendar.getInstance();
-	private static final SimpleDateFormat simpleformat = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss");
 	private static SimpleDateFormat simpleformatpatten;
 
 	public DataToolsUtils() {
@@ -34,6 +32,13 @@ public class DataToolsUtils {
 	}
 
 	/**
+	 * @Description:得到getTime
+	 */
+	public static long getTime() {
+		return getDate().getTime();
+	}
+
+	/**
 	 * @Description:得到getSimpleDateFormat
 	 */
 	private static SimpleDateFormat getDfSimpleDateFormat() {
@@ -51,6 +56,8 @@ public class DataToolsUtils {
 	 * @Description:得到默认格式 yyyy-MM-dd HH:mm:ss
 	 */
 	public static String getSimpleDateFormat() {
+		SimpleDateFormat simpleformat = new SimpleDateFormat(
+				"yyyy-MM-dd HH:mm:ss");
 		return simpleformat.format(getDate());
 	}
 

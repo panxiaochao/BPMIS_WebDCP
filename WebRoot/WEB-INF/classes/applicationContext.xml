@@ -14,7 +14,8 @@
 	<context:component-scan base-package="bpmis.pxc.system.controller.core" />
 	<context:component-scan base-package="bpmis.pxc.system.dao.impl" />
 	<context:component-scan base-package="bpmis.pxc.system.service.impl" />
-
+	<!-- SpringContextHolder -->
+	<bean id="applicationContext" class="org.pxcbpmisframework.core.util.SpringContextHolder" />
 
 	<!-- properties -->
 	<context:property-placeholder
@@ -60,8 +61,8 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
-				<prop key="hibernate.jdbc.fetch_size">50</prop>  
-            	<prop key="hibernate.jdbc.batch_size">0</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.jdbc.batch_size">0</prop>
 			</props>
 		</property>
 	</bean>
@@ -92,6 +93,38 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- bean -->
+	<bean id="resjob" class="org.pxcbpmisframework.core.xml.DomjXmlIT" />
+	<bean id="studyDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="resjob" />
+		<property name="targetMethod" value="CrawlerRss" />
+		<!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 -->
+		<property name="concurrent" value="false" />
+	</bean>
 
+	<!-- 定义触发时间 -->
+	<bean id="myJobTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="studyDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/30 7-22 * * ?</value>
+		</property>
+	</bean>
+
+	<!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+	<!-- 如果lazy-init='true',则需要实例化该bean才能执行调度程序 -->
+	<bean name="startQuertz" lazy-init="false" autowire="no"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="myJobTrigger" />
+			</list>
+		</property>
+		<!-- <property name="autoStartup" value="true"/>  -->
+	</bean>
 
 </beans>

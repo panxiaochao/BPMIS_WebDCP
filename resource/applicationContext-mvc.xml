@@ -9,9 +9,6 @@
             http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	<context:annotation-config />
 	<context:component-scan base-package="bpmis.pxc.system.controller.core" />
-	<!-- 
-	<context:component-scan base-package="org.pxcbpmisframework.core.exception" />
- 	-->
 	<mvc:annotation-driven />
 	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
 	<bean id="mappingJacksonHttpMessageConverter"
@@ -49,10 +46,9 @@
 
 	<!-- 异常处理类 -->
 	<bean id="exceptionHandler" class="org.pxcbpmisframework.core.exception.MyExceptionHandler" />
-
-
+	
 	<!-- 拦截器	-->
 	<mvc:interceptors>
 		<bean class="org.pxcbpmisframework.core.interceptor.SystemInterceptor" />
-	</mvc:interceptors> 
+	</mvc:interceptors>
 </beans>

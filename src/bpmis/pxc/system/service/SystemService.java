@@ -3,6 +3,9 @@ package bpmis.pxc.system.service;
 import java.util.List;
 import java.util.Map;
 
+import org.pxcbpmisframework.core.common.qbc.CriteriaQuery;
+import org.pxcbpmisframework.core.page.Page;
+
 /**
  * 
  * @ClassName: SystemService
@@ -32,6 +35,14 @@ public interface SystemService {
 
 	public <T> void deleteAll(List<T> entityAll);
 
+	/**
+	 * 
+	 * @Title: deleteAll
+	 * @Description: TODO(采用String[],或者List,来全部删除)
+	 */
+	public <T> void deleteAll(Class<T> entityName, String[] idstr,
+			List<T> idlist);
+
 	public <T> List<T> ByCrifindQuery(Class<T> clazz);
 
 	public <T> List<T> ByCrifindQuery(Class<T> clazz, boolean isAsc,
@@ -40,7 +51,31 @@ public interface SystemService {
 	public <T> List<T> ByCrifindQuery(Class<T> entityClass,
 			Map<String, Integer> parms);
 
+	public Map<?, ?> getPageList(Class<?> clazz, CriteriaQuery cq, Page page);
+
 	public <T> Object getClassById(Class<T> clazz, String id);
 
 	public <T> List<T> findByQueryHql(String hql);
+
+	public void addLogger(String logcontent, String loglevel, String operatetype);
+
+	/*
+	 * jdbc
+	 */
+	public void execute(String sql);
+
+	public int queryForInt(String sql);
+
+	public int queryForInt(String sql, Object[] args);
+
+	public String queryForString(String sql);
+
+	public String queryForString(String sql, Object[] args);
+
+	public <T> List<T> queryForList(String sql);
+
+	public <T> List<T> queryForList(String sql, Class<T> entityClass);
+
+	public <T> List<T> queryForList(String sql, Object[] args,
+			Class<T> entityClass);
 }

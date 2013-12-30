@@ -1,5 +1,6 @@
 package bpmis.pxc.system.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,10 +12,15 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.pxcbpmisframework.core.common.qbc.CriteriaQuery;
 import org.pxcbpmisframework.core.exception.BusinessException;
+import org.pxcbpmisframework.core.page.Page;
+import org.pxcbpmisframework.core.page.PageHtmlUtils;
 import org.springframework.stereotype.Repository;
 
 import bpmis.pxc.system.dao.SystemDao;
@@ -71,6 +77,43 @@ public class SystemDaoImpl implements SystemDao {
 	}
 
 	/**
+	 * @Title: deleteAll
+	 */
+	public <T> void deleteAll(Class<T> entityName, String[] idstr,
+			List<T> idlist) {
+		// TODO Auto-generated method stub
+		if (idstr == null) { // 采用List
+			try {
+				for (int i = 0; i < idlist.size(); i++) {
+					Object object = getClassById(entityName, idlist.get(i)
+							.toString());
+					getSession().delete(object);
+					getSession().flush();
+				}
+			} catch (RuntimeException e) {
+				logger.error(e);
+				throw new BusinessException(e);
+			} finally {
+				// s.close();
+			}
+		} else {// 采用String[]
+			try {
+				for (int i = 0; i < idstr.length; i++) {
+					Object object = getClassById(entityName, idstr[i]);
+					getSession().delete(object);
+					getSession().flush();
+				}
+			} catch (RuntimeException e) {
+				logger.error(e);
+				throw new BusinessException(e);
+			} finally {
+				// s.close();
+			}
+		}
+
+	}
+
+	/**
 	 * @Title: deleteEntityByHql
 	 */
 	public <T> void deleteEntityByHql(String hql) {
@@ -106,9 +149,14 @@ public class SystemDaoImpl implements SystemDao {
 	/**
 	 * @Title: findByQueryHql
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> List<T> findByQueryHql(String hql) {
 		// TODO Auto-generated method stub
-		return null;
+		List<T> list = getSession().createQuery(hql).list();
+		if (list.size() > 0) {
+			getSession().flush();
+		}
+		return list;
 	}
 
 	/**
@@ -259,6 +307,50 @@ public class SystemDaoImpl implements SystemDao {
 			criteria.add(Restrictions.eq(key.toString(), value));
 		}
 		return criteria.list();
+	}
+
+	/**
+	 * 分页,返回pageHtml
+	 */
+
+	@SuppressWarnings( { "static-access", "unchecked" })
+	public Map<?, ?> getPageList(Class<?> clazz, CriteriaQuery cq, Page page) {
+		PageHtmlUtils pageHtml = new PageHtmlUtils();
+		Map map = new HashMap();
+		//
+		Criteria criteria = getCriteria(clazz);
+		int totalRecords = ((Long) criteria.setProjection(
+				Projections.rowCount()).uniqueResult()).intValue();
+		page.setTotalRecords(totalRecords);
+		if (cq.isAsc()) {
+			if (!"".equals(cq.getFiled()) && cq.getFiled() != null)
+				criteria.addOrder(Order.asc(cq.getFiled()));
+		} else {
+			if (!"".equals(cq.getFiled()) && cq.getFiled() != null)
+				criteria.addOrder(Order.desc(cq.getFiled()));
+		}
+		/**
+		 * extend Map parms by panxiaochao created 2013.12.27
+		 */
+		if (cq.getMap() != null) {
+			Set<Object> setkey = cq.getMap().keySet();
+			for (Object key : setkey) {
+				criteria.add(Restrictions.eq(key.toString(), cq.getMap().get(
+						key)));
+			}
+		}
+
+		int currentPage = page.getCurrentPage();
+		int pageSize = page.getPageSize();
+		criteria.setProjection(null);// 清空projection，以便取得记录
+		criteria.setResultTransformer(CriteriaSpecification.ROOT_ENTITY);// 设置查询结果为实体对象，
+		criteria.setFirstResult((currentPage - 1) * pageSize);
+		criteria.setMaxResults(pageSize);
+		String pagehtml = pageHtml.getPageDcp(page);
+
+		map.put("list", criteria.list());
+		map.put("pagehtml", pagehtml);
+		return map;
 	}
 
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tb_rss")
-public class TBRss implements java.io.Serializable{
+public class TBRss implements java.io.Serializable {
 	private Integer id;
 	private String source;
 	private String sourceUrl;
@@ -30,6 +30,8 @@ public class TBRss implements java.io.Serializable{
 
 	private String createtime;
 	private String poster;
+
+	private String macaddr;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,6 +113,14 @@ public class TBRss implements java.io.Serializable{
 
 	public void setPoster(String poster) {
 		this.poster = poster;
+	}
+
+	public String getMacaddr() {
+		return macaddr;
+	}
+
+	public void setMacaddr(String macaddr) {
+		this.macaddr = macaddr;
 	}
 
 }
